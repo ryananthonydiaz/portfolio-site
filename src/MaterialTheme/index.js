@@ -3,7 +3,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 export const Theme = createMuiTheme({
 	palette: {
 		// TODO: conditionally change light and dark mode
-		// type: 'dark',
+		type: 'dark',
 		primary: {
 			main: '#2c3e50',
 			text: {
@@ -14,7 +14,7 @@ export const Theme = createMuiTheme({
 			},
 		},
 		background: {
-
+			default: 'radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%)',
 		},
 		typography: {
 			h1: {
