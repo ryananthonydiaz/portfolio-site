@@ -2,10 +2,10 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 export const Theme = createMuiTheme({
 	palette: {
-		type: 'dark',
+		// TODO: conditionally change light and dark mode
+		// type: 'dark',
 		primary: {
-			main: '#a43125',
-			dark: '#2c3e50',
+			main: '#2c3e50',
 			text: {
 				primary: '#dc6f64',
 				primarymediumEmphasis: 'rgba(0,0,0,0.6)',
@@ -14,9 +14,12 @@ export const Theme = createMuiTheme({
 			},
 		},
 		background: {
-			default: '#501812',
+
 		},
 		typography: {
+			h1: {
+				fontWeight: 100,
+			},
 			subtitle1: { fontWeight: 100 },
 		},
 	},
