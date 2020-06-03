@@ -81,7 +81,6 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
   },
 }));
 
@@ -175,7 +174,7 @@ function UnauthDesktopDrawer({ children }) {
               <ListItemIcon>{icon}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
-            {index === 4 ? null : <Divider />}
+            {index === 5 ? null : <Divider />}
           </>
         ))}
         </List>
