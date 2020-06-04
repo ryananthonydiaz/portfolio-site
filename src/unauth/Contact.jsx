@@ -5,6 +5,10 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
+  formContainer: {
+    width: '100%',
+    margin: theme.spacing(6, 0),
+  },
   window: {
     width: '100%'
   },
@@ -14,13 +18,9 @@ const useStyles = makeStyles(theme => ({
       width: '95%',
     }
   },
-  form: {
-    width: '100%',
-    margin: theme.spacing(6, 0),
-  },
   formItem: {
     width: '400px',
-    margin: theme.spacing(4, 0),
+    margin: '1rem 0',
     [theme.breakpoints.down('md')]: {
       width: '100%'
     }
@@ -39,7 +39,7 @@ function Contact() {
   }
 
   const content = (
-    <Grid justify="center" alignItems="center" className={classes.form} container>
+    <Grid justify="center" alignItems="center" className={classes.formContainer} container>
       <Grid className={classes.windowGridItem} item>
         <Window className={classes.window}>
           <WindowHeader>Send Me A Message!</WindowHeader>
