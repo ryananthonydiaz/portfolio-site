@@ -9,17 +9,27 @@ const useStyles = makeStyles(theme => ({
   root: {
     height: `calc(100vh - 64px)`,
   },
+  titleContainer: {
+    margin: '80px 0',
+  },
   title: {
     height: 'auto',
     textAlign: 'center',
     fontWeight: 100,
-    fontSize: '3rem',
+    fontSize: '2rem',
     letterSpacing: '10px',
     textTransform: 'uppercase',
-    margin: '80px',
+    [theme.breakpoints.down('md')]: {
+      fontSize: '1.25rem',
+    },
   },
   subHeader: {
     fontSize: '1rem',
+    letterSpacing: '10px',
+    textTransform: 'uppercase',
+    fontWeight: 100,
+    margin: '2rem 0'
+
   },
 }));
 
@@ -31,13 +41,11 @@ function Landing() {
       <div className={classes.stars} />
       <div className={classes.starsTwo} />
       <div className={classes.starsThree} />
-      <Grid justify="center" alignItems="center" container>
-        <Grid justify="center" alignItems="center" direction="column" className={classes.title} item container>
-          <Grid item>
-            <div>RYAN DIAZ</div>
-          </Grid>
-          <Grid className={classes.subHeader} item>Software Engineer</Grid>
+      <Grid justify="center" alignItems="center" direction="column" className={classes.titleContainer} container>
+        <Grid item>
+          <div className={classes.title}>RYAN DIAZ</div>
         </Grid>
+        <Grid className={classes.subHeader} item>Software Engineer</Grid>
       </Grid>
     </div>
   );
