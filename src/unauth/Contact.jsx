@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
   formContainer: {
     width: '100%',
-    margin: theme.spacing(6, 0),
+    margin: theme.spacing(5, 0),
   },
   window: {
     width: '100%'
@@ -16,6 +16,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '500px',
     [theme.breakpoints.down('md')]: {
       width: '95%',
+      maxHeight: '100%'
     }
   },
   formItem: {
@@ -51,7 +52,7 @@ function Contact() {
               </Grid>
               <Grid className={classes.formItem} item>
                 <div>Message</div>
-                <TextArea value={msg} onChange={handleMsg} />
+                <TextArea value={msg} height={200} onChange={handleMsg} />
               </Grid>
               <Grid className={classes.formItem} item>
                 <Button onClick={handleSubmit} style={{ marginLeft: '2px' }}>

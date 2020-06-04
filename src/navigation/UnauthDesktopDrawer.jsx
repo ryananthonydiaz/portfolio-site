@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -142,19 +142,14 @@ function UnauthDesktopDrawer({ children }) {
         {
           [
             {
+              text: 'Home',
+              icon: <HomeIcon />,
+              path: '/',
+            },
+            {
               text: 'Projects',
               icon: <CodeIcon />,
               path: '/projects',
-            },
-            {
-              text: 'GitHub',
-              icon: <GitHubIcon />,
-              path: () => window.open('https://www.github.com/ryananthonydiaz'),
-            },
-            {
-              text: 'LinkedIn',
-              icon: <LinkedInIcon />,
-              path: () => window.open('https://www.linkedin.com/in/ryananthonydiaz/'),
             },
             {
               text: 'About',
@@ -167,9 +162,14 @@ function UnauthDesktopDrawer({ children }) {
               path: '/contact',
             },
             {
-              text: 'Home',
-              icon: <HomeIcon />,
-              path: '/',
+              text: 'GitHub',
+              icon: <GitHubIcon />,
+              path: () => window.open('https://www.github.com/ryananthonydiaz'),
+            },
+            {
+              text: 'LinkedIn',
+              icon: <LinkedInIcon />,
+              path: () => window.open('https://www.linkedin.com/in/ryananthonydiaz/'),
             },
           ].map(({ text, icon, path }, index) => {
             let clickHandler;
@@ -179,13 +179,13 @@ function UnauthDesktopDrawer({ children }) {
               clickHandler = path;
             }
             return (
-              <>
-                <ListItem button key={text} className={classes.listItem} onClick={clickHandler}>
+              <Fragment key={text}>
+                <ListItem button className={classes.listItem} onClick={clickHandler}>
                   <ListItemIcon>{icon}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
                 {index === 5 ? null : <Divider />}
-              </>
+              </Fragment>
             )
           })}
         </List>
