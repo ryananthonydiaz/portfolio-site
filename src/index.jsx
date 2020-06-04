@@ -11,6 +11,9 @@ import { Theme } from './materialTheme/index';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import * as serviceWorker from './serviceWorker';
 
+import { ThemeProvider } from 'styled-components';
+import { themes } from 'react95';
+
 let store;
 if (process.env.NODE_ENV === 'development') {
 	const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -29,11 +32,13 @@ if (process.env.NODE_ENV === 'development') {
 const app = (
   <Provider store={store}>
     <MuiThemeProvider theme={Theme}>
-      <CssBaseline>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </CssBaseline>
+      <ThemeProvider theme={themes.default}>
+        <CssBaseline>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </CssBaseline>
+      </ThemeProvider>
     </MuiThemeProvider>
   </Provider>
 );

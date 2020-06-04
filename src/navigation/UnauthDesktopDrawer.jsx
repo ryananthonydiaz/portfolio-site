@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -85,6 +85,7 @@ const useStyles = makeStyles(theme => ({
 
 function UnauthDesktopDrawer({ children }) {
   const classes = useStyles();
+  const history = useHistory();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
 
@@ -142,37 +143,51 @@ function UnauthDesktopDrawer({ children }) {
           [
             {
               text: 'Projects',
-              icon: <CodeIcon />
+              icon: <CodeIcon />,
+              path: '/projects',
             },
             {
               text: 'GitHub',
-              icon: <GitHubIcon />
+              icon: <GitHubIcon />,
+              path: () => window.open('https://www.github.com/ryananthonydiaz'),
             },
             {
               text: 'LinkedIn',
-              icon: <LinkedInIcon />
+              icon: <LinkedInIcon />,
+              path: () => window.open('https://www.linkedin.com/in/ryananthonydiaz/'),
             },
             {
               text: 'About',
-              icon: <InfoIcon />
+              icon: <InfoIcon />,
+              path: '/about',
             },
             {
               text: 'Contact',
-              icon: <SendIcon />
+              icon: <SendIcon />,
+              path: '/contact',
             },
             {
               text: 'Home',
-              icon: <HomeIcon />
+              icon: <HomeIcon />,
+              path: '/',
             },
-          ].map(({ text, icon }, index) => (
-          <>
-            <ListItem button key={text} className={classes.listItem}>
-              <ListItemIcon>{icon}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-            {index === 5 ? null : <Divider />}
-          </>
-        ))}
+          ].map(({ text, icon, path }, index) => {
+            let clickHandler;
+            if (typeof path === 'string') {
+              clickHandler = () => history.push(path);
+            } else {
+              clickHandler = path;
+            }
+            return (
+              <>
+                <ListItem button key={text} className={classes.listItem} onClick={clickHandler}>
+                  <ListItemIcon>{icon}</ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItem>
+                {index === 5 ? null : <Divider />}
+              </>
+            )
+          })}
         </List>
       </Drawer>
       <main className={classes.content}>

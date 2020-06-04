@@ -1,13 +1,11 @@
 import React from 'react';
-import { starsBoxShadow, starsAfterBoxShadow, starsTwo, starsTwoAfter, starsThree, starsThreeAfter } from '../materialTheme';
 import UnauthDesktopDrawer from '../navigation/UnauthDesktopDrawer';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: `calc(100vh - 64px)`,
+    height: `100%`,
   },
   titleContainer: {
     margin: '80px 0',

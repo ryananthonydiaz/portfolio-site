@@ -1,10 +1,11 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Landing from './unauth/Landing';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Contact from './unauth/Contact';
+import About from './unauth/About';
+import Work from './unauth/Work';
 
 function App() {
-  const isMobile = useMediaQuery('(max-width:800px)');
   const isAuthenticated = false;
 
   let main;
@@ -14,6 +15,9 @@ function App() {
     main = (
       <Switch>
         <Route exact path="/" component={Landing} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/contact" component={Contact} />
+        <Route exact path="/projects" component={Work} />
         <Redirect to="/" />
       </Switch>
     );
