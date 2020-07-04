@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import UnauthDesktopDrawer from '../navigation/UnauthDesktopDrawer';
-import { TextField, TextArea, Button, Window, WindowHeader, WindowContent } from 'react95';
 import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -9,20 +9,11 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     margin: theme.spacing(6, 0),
   },
-  window: {
-    width: '100%'
-  },
-  windowGridItem: {
-    maxWidth: '500px',
-    [theme.breakpoints.down('md')]: {
-      width: '95%',
-    }
-  },
   formItem: {
     width: '400px',
-    margin: '1rem 0',
-    [theme.breakpoints.down('md')]: {
-      width: '100%'
+    margin: theme.spacing(2, 0),
+    [theme.breakpoints.down('sm')]: {
+      width: '80vw'
     }
   }
 }));
@@ -39,29 +30,31 @@ function Contact() {
   }
 
   const content = (
-    <Grid justify="center" alignItems="center" className={classes.formContainer} container>
-      <Grid className={classes.windowGridItem} item>
-        <Window className={classes.window}>
-          <WindowHeader>Send Me A Message!</WindowHeader>
-          <WindowContent>
-            <Grid justify="center" alignItems="center" direction="column" container>
-              <Grid className={classes.formItem} item>
-                <div>Email</div>
-                <TextField value={email} onChange={handleEmail} />
-              </Grid>
-              <Grid className={classes.formItem} item>
-                <div>Message</div>
-                <TextArea value={msg} onChange={handleMsg} />
-              </Grid>
-              <Grid className={classes.formItem} item>
-                <Button onClick={handleSubmit} style={{ marginLeft: '2px' }}>
-                  Submit
-                </Button>
-              </Grid>
-            </Grid>
-          </WindowContent>
-        </Window>
+    <Grid
+      justify="center"
+      alignItems="center"
+      direction="column"
+      className={classes.formContainer}
+      container
+    >
+      <Grid item>
+          <TextField
+            label="Email"
+            variant="outlined"
+            onChange={() => null}
+            className={classes.formItem}
+          />
       </Grid>
+      <Grid item>
+        <TextField
+            multiline
+            rows={10}
+            label="Message"
+            variant="outlined"
+            onChange={() => null}
+            className={classes.formItem}
+          />
+        </Grid>
     </Grid>
   );
 

@@ -7,12 +7,11 @@ import thunk from 'redux-thunk';
 import rootReducer from './state/reducers';
 import { BrowserRouter } from 'react-router-dom';
 import { MuiThemeProvider } from '@material-ui/core';
-import { Theme } from './materialTheme/index';
+import { Theme } from './MaterialTheme';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import * as serviceWorker from './serviceWorker';
 
 import { ThemeProvider } from 'styled-components';
-import { themes } from 'react95';
 
 let store;
 if (process.env.NODE_ENV === 'development') {
@@ -32,13 +31,11 @@ if (process.env.NODE_ENV === 'development') {
 const app = (
   <Provider store={store}>
     <MuiThemeProvider theme={Theme}>
-      <ThemeProvider theme={themes.default}>
         <CssBaseline>
           <BrowserRouter>
             <App />
           </BrowserRouter>
         </CssBaseline>
-      </ThemeProvider>
     </MuiThemeProvider>
   </Provider>
 );
