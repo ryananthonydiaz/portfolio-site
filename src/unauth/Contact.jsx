@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -31,6 +32,9 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       width: '80vw'
     }
+  },
+  button: {
+    color: '#FFD700',
   }
 }));
 
@@ -58,6 +62,7 @@ function Contact() {
           <div className={classes.paperItem}>CONTACT ME</div>
         </Paper>
       </Grid>
+
       <Grid item>
         <InputLabel>Email</InputLabel>
         <TextField
@@ -67,17 +72,24 @@ function Contact() {
           className={classes.formItem}
         />
       </Grid>
+
       <Grid item>
         <InputLabel>Message</InputLabel>
         <TextField
-            multiline
-            rows={10}
-            label="Message"
-            variant="outlined"
-            onChange={() => null}
-            className={classes.formItem}
-          />
-        </Grid>
+          multiline
+          rows={10}
+          label="Message"
+          variant="outlined"
+          onChange={() => null}
+          className={classes.formItem}
+        />
+      </Grid>
+      
+      <Grid item>
+        <Button className={`${classes.formItem} ${classes.button}`} variant="outlined">
+          SUBMIT
+        </Button>
+      </Grid>
     </Grid>
   );
 
