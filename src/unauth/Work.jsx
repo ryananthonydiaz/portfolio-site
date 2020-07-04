@@ -48,25 +48,13 @@ const useStyles = makeStyles(theme => ({
   button: {
     color: '#FFD700',
   },
-
-  // Everythin below in styles may need to be taken out
-
   root: {
     maxWidth: 345,
   },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
+    paddingBottom: theme.spacing(5),
   },
 }));
 
@@ -82,8 +70,8 @@ function Work() {
   // This will have to be on the server and called upon site opening up and then cached to
   // local storage
   const projectContent = [
-    {cardHeaderTitle: 'Apt Health',
-    cardHeaderSubHeader: 'October 2019 - April 2020',
+    {cardHeaderTitle: 'Apt Health, Inc.',
+    cardHeaderSubHeader: 'Front-End Engineer 10/19 - 04/20',
     cardMediaImage: AptHealth,
     cardMediaTitle: 'Apt Health Landing Page',
     cardDescription: `This project I was apprroached by a startup to build a web application in React.js

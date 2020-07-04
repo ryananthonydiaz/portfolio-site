@@ -83,7 +83,7 @@ const useStyles = makeStyles(theme => ({
   },
   listText: {
     color: '#757575'
-  }
+  },
 }));
 
 function UnauthDesktopDrawer({ children }) {
@@ -183,8 +183,8 @@ function UnauthDesktopDrawer({ children }) {
             }
             return (
               <>
-                <ListItem button key={text} className={classes.listItem} onClick={clickHandler}>
-                  <ListItemIcon>{icon}</ListItemIcon>
+                <ListItem button key={text} alignItems="center" className={classes.listItem} onClick={clickHandler}>
+                  <ListItemIcon className={classes.listItemIcon}>{icon}</ListItemIcon>
                   <ListItemText primary={text} classes={{ root: classes.listText }} />
                 </ListItem>
                 {index === 5 ? null : <Divider />}
