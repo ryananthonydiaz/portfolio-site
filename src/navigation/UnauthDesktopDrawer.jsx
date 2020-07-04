@@ -81,6 +81,9 @@ const useStyles = makeStyles(theme => ({
   content: {
     flexGrow: 1,
   },
+  listText: {
+    color: '#757575'
+  }
 }));
 
 function UnauthDesktopDrawer({ children }) {
@@ -142,19 +145,14 @@ function UnauthDesktopDrawer({ children }) {
         {
           [
             {
+              text: 'Home',
+              icon: <HomeIcon />,
+              path: '/',
+            },
+            {
               text: 'Projects',
               icon: <CodeIcon />,
               path: '/projects',
-            },
-            {
-              text: 'GitHub',
-              icon: <GitHubIcon />,
-              path: () => window.open('https://www.github.com/ryananthonydiaz'),
-            },
-            {
-              text: 'LinkedIn',
-              icon: <LinkedInIcon />,
-              path: () => window.open('https://www.linkedin.com/in/ryananthonydiaz/'),
             },
             {
               text: 'About',
@@ -167,9 +165,14 @@ function UnauthDesktopDrawer({ children }) {
               path: '/contact',
             },
             {
-              text: 'Home',
-              icon: <HomeIcon />,
-              path: '/',
+              text: 'GitHub',
+              icon: <GitHubIcon />,
+              path: () => window.open('https://www.github.com/ryananthonydiaz'),
+            },
+            {
+              text: 'LinkedIn',
+              icon: <LinkedInIcon />,
+              path: () => window.open('https://www.linkedin.com/in/ryananthonydiaz/'),
             },
           ].map(({ text, icon, path }, index) => {
             let clickHandler;
@@ -182,7 +185,7 @@ function UnauthDesktopDrawer({ children }) {
               <>
                 <ListItem button key={text} className={classes.listItem} onClick={clickHandler}>
                   <ListItemIcon>{icon}</ListItemIcon>
-                  <ListItemText primary={text} />
+                  <ListItemText primary={text} classes={{ root: classes.listText }} />
                 </ListItem>
                 {index === 5 ? null : <Divider />}
               </>
