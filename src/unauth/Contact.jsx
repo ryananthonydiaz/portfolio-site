@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import UnauthDesktopDrawer from '../navigation/UnauthDesktopDrawer';
+import HeaderPaper from './HeaderPaper';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -24,7 +24,8 @@ const useStyles = makeStyles(theme => ({
     fontSize: '2rem',
     fontWeight: '100',
     letterSpacing: '.5rem',
-    color: '#757575'
+    color: '#757575',
+    textTransform: 'uppercase',
   },
   formItem: {
     width: '400px',
@@ -45,10 +46,8 @@ function Contact() {
 
   const handleEmail = e => setEmail(e.target.value);
   const handleMsg = e => setMsg(e.target.value);
-  const handleSubmit = e => {
-    console.log('submit pressed');
-  }
-
+  const handleSubmit = e => console.log('submit pressed');
+  const title = 'Contact Me';
   const content = (
     <Grid
       justify="center"
@@ -57,12 +56,7 @@ function Contact() {
       className={classes.formContainer}
       container
     >
-      <Grid item>
-        <Paper elevation={5} className={classes.paper}>
-          <div className={classes.paperItem}>CONTACT ME</div>
-        </Paper>
-      </Grid>
-
+      <HeaderPaper classes={classes} title={title} />
       <Grid item>
         <InputLabel>Email</InputLabel>
         <TextField

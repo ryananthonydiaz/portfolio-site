@@ -1,8 +1,8 @@
 import React from 'react';
 import AptHealth from '../assets/apt-health.gif';
+import HeaderPaper from './HeaderPaper';
 import UnauthDesktopDrawer from '../navigation/UnauthDesktopDrawer';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 
 // ALL following imports may need to be removed
@@ -36,7 +36,8 @@ const useStyles = makeStyles(theme => ({
     fontSize: '2rem',
     fontWeight: '100',
     letterSpacing: '.5rem',
-    color: '#757575'
+    color: '#757575',
+    textTransform: 'uppercase',
   },
   formItem: {
     width: '400px',
@@ -67,6 +68,8 @@ function Work() {
     setExpanded(!expanded);
   };
 
+  const title = 'Projects';
+
   // This will have to be on the server and called upon site opening up and then cached to
   // local storage
   const projectContent = [
@@ -88,6 +91,7 @@ function Work() {
       cardMediaTitle,
       cardDescription,
     }) => (
+      // This should be placed in its own component possibly
     <Card raised className={classes.root}>
       <CardHeader
         avatar={<Avatar>R</Avatar>}
@@ -127,11 +131,7 @@ function Work() {
       className={classes.formContainer}
       container
     >
-      <Grid item>
-        <Paper elevation={5} className={classes.paper}>
-          <div className={classes.paperItem}>PROJECTS</div>
-        </Paper>
-      </Grid>
+      <HeaderPaper classes={classes} title={title} />
       {projectGrid}
     </Grid>
   );

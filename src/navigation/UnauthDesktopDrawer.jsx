@@ -150,14 +150,14 @@ function UnauthDesktopDrawer({ children }) {
               path: '/',
             },
             {
-              text: 'Projects',
-              icon: <CodeIcon />,
-              path: '/projects',
-            },
-            {
               text: 'About',
               icon: <InfoIcon />,
               path: '/about',
+            },
+            {
+              text: 'Projects',
+              icon: <CodeIcon />,
+              path: '/projects',
             },
             {
               text: 'Contact',

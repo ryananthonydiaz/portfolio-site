@@ -12,17 +12,6 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     margin: theme.spacing(6, 0),
   },
-  title: {
-    height: 'auto',
-    textAlign: 'center',
-    fontWeight: 100,
-    fontSize: '2rem',
-    letterSpacing: '10px',
-    textTransform: 'uppercase',
-    [theme.breakpoints.down('md')]: {
-      fontSize: '1.25rem',
-    },
-  },
   paper: {
     margin: theme.spacing(0, 0, 5, 0),
     width: theme.spacing(50),
@@ -30,6 +19,10 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
+    padding: theme.spacing(1, 2),
+    [theme.breakpoints.down('sm')]: {
+      width: theme.spacing(40),
+    }
   },
   paperItem: {
     display: 'flex',
@@ -40,10 +33,12 @@ const useStyles = makeStyles(theme => ({
     letterSpacing: '.5rem',
     color: '#757575',
     textTransform: 'uppercase',
-    padding: theme.spacing(1, 2)
   },
   paperItemSub: {
     fontSize: '1rem',
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    }
   }
 }));
 
