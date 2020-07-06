@@ -7,11 +7,9 @@ import thunk from 'redux-thunk';
 import rootReducer from './state/reducers';
 import { BrowserRouter } from 'react-router-dom';
 import { MuiThemeProvider } from '@material-ui/core';
-import { Theme } from './MaterialTheme';
+import Theme from './MaterialTheme';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import * as serviceWorker from './serviceWorker';
-
-import { ThemeProvider } from 'styled-components';
 
 let store;
 if (process.env.NODE_ENV === 'development') {

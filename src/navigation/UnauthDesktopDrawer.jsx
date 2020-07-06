@@ -118,7 +118,7 @@ function UnauthDesktopDrawer({ children }) {
               [classes.hide]: open,
             })}
           >
-            <MenuIcon />
+            <MenuIcon color='primary' classes={{colorPrimary: classes.listText}} />
           </IconButton>
         </Toolbar>
       </AppBar>

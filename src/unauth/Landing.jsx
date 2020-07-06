@@ -1,6 +1,7 @@
 import React from 'react';
 import UnauthDesktopDrawer from '../navigation/UnauthDesktopDrawer';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -27,8 +28,21 @@ const useStyles = makeStyles(theme => ({
     textTransform: 'uppercase',
     fontWeight: 100,
     margin: '2rem 0'
-
   },
+  paperItem: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '2rem',
+    fontWeight: '100',
+    letterSpacing: '.5rem',
+    color: '#757575',
+    textTransform: 'uppercase',
+    padding: theme.spacing(1, 2)
+  },
+  paperItemSub: {
+    fontSize: '1rem',
+  }
 }));
 
 function Landing() {
@@ -41,9 +55,11 @@ function Landing() {
       <div className={classes.starsThree} />
       <Grid justify="center" alignItems="center" direction="column" className={classes.titleContainer} container>
         <Grid item>
-          <div className={classes.title}>RYAN DIAZ</div>
+        <Paper elevation={5} className={classes.paper}>
+          <div className={classes.paperItem}>Ryan Diaz</div>
+          <div className={`${classes.paperItem} ${classes.paperItemSub}`}>Software Engineer</div>
+        </Paper>
         </Grid>
-        <Grid className={classes.subHeader} item>Software Engineer</Grid>
       </Grid>
     </div>
   );
