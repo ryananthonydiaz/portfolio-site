@@ -1,7 +1,10 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import UnauthDesktopDrawer from '../navigation/UnauthDesktopDrawer';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import SendIcon from '@material-ui/icons/Send';
+import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -39,11 +42,22 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
     }
+  },
+  messageIcon: {
+    position: 'absolute',
+    bottom: '10%',
+    right: '10%',
+  },
+  icon: {
+    color: '#757575',
+    pointer: 'cursor',
+    transform: 'rotate(-45deg)',
   }
 }));
 
 function Landing() {
   const classes = useStyles();
+  const history = useHistory();
 
   let content = (
     <div className={classes.root}>
@@ -64,9 +78,14 @@ function Landing() {
     </div>
   );
   return (
+    <>
       <UnauthDesktopDrawer>
         {content}
       </UnauthDesktopDrawer>
+      <Button className={classes.messageIcon} onClick={() => history.push('/contact')}>
+        <SendIcon fontSize="large" color="primary" classes={{ colorPrimary: classes.icon }} />
+      </Button>
+    </>
   );
 }
 
