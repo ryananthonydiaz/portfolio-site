@@ -8,8 +8,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     height: `100%`,
   },
-  titleContainer: {
-    margin: '80px 0',
+  formContainer: {
+    width: '100%',
+    margin: theme.spacing(6, 0),
   },
   title: {
     height: 'auto',
@@ -22,12 +23,13 @@ const useStyles = makeStyles(theme => ({
       fontSize: '1.25rem',
     },
   },
-  subHeader: {
-    fontSize: '1rem',
-    letterSpacing: '10px',
-    textTransform: 'uppercase',
-    fontWeight: 100,
-    margin: '2rem 0'
+  paper: {
+    margin: theme.spacing(0, 0, 5, 0),
+    width: theme.spacing(50),
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
   },
   paperItem: {
     display: 'flex',
@@ -50,10 +52,13 @@ function Landing() {
 
   let content = (
     <div className={classes.root}>
-      <div className={classes.stars} />
-      <div className={classes.starsTwo} />
-      <div className={classes.starsThree} />
-      <Grid justify="center" alignItems="center" direction="column" className={classes.titleContainer} container>
+      <Grid
+        justify="center"
+        alignItems="center"
+        direction="column"
+        className={classes.formContainer}
+        container
+      >
         <Grid item>
         <Paper elevation={5} className={classes.paper}>
           <div className={classes.paperItem}>Ryan Diaz</div>
