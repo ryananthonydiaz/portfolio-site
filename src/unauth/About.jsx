@@ -70,12 +70,12 @@ function About() {
     `,
   },{
     title: `Team`,
-    subTitle: `Skills team software`,
+    subTitle: `Team Software`,
     info: `Professional experience using Git, Jira, SourceTree, BitBucket and GitHub for version control
     and ticketing.`,
   },{
     title: `Cloud`,
-    subTitle: `Skills related to cloud services`,
+    subTitle: `Cloud Service Skills`,
     info: `Amazon Cognito from AWS, itegrated into web applications as a full authetication service using
     their JavaScript SDK.`,
   }].map(({title, subTitle, info}) => (
