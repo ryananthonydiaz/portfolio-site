@@ -1,8 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -21,6 +19,9 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import InfoIcon from '@material-ui/icons/Info';
 import HomeIcon from '@material-ui/icons/Home';
 import SendIcon from '@material-ui/icons/Send';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import clsx from 'clsx';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
 
@@ -175,6 +176,11 @@ function UnauthDesktopDrawer({ children }) {
               icon: <LinkedInIcon />,
               path: () => window.open('https://www.linkedin.com/in/ryananthonydiaz/'),
             },
+            {
+              text: 'Login',
+              icon: <VpnKeyIcon />,
+              path: '/login',
+            },
           ].map(({ text, icon, path }, index) => {
             let clickHandler;
             if (typeof path === 'string') {
@@ -188,7 +194,7 @@ function UnauthDesktopDrawer({ children }) {
                   <ListItemIcon className={classes.listItemIcon}>{icon}</ListItemIcon>
                   <ListItemText primary={text} classes={{ root: classes.listText }} />
                 </ListItem>
-                {index === 5 ? null : <Divider />}
+                {index === 6 ? null : <Divider />}
               </Fragment>
             )
           })}

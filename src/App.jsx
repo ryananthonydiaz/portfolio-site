@@ -4,6 +4,7 @@ import Landing from './unauth/Landing';
 import Contact from './unauth/Contact';
 import About from './unauth/About';
 import Work from './unauth/Work';
+import Login from './unauth/Login';
 
 function App() {
   const isAuthenticated = false;
@@ -18,6 +19,7 @@ function App() {
         <Route exact path="/about" component={About} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/projects" component={Work} />
+        <Route exact path="/login" component={Login} />
         <Redirect to="/" />
       </Switch>
     );

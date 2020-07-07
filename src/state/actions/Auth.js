@@ -1,13 +1,13 @@
-import { fetchApi } from '../../utils/ApitUtils';
-import { SIGN_OUT, LOG_USER_IN, LOADING_COMPLETED, LOG_USER_OUT } from '.';
+import { fetchApi } from '../../utils/ApiUtils';
+import { } from '.';
 
-export const personnelLogin = (email, password) => async dispatch => {
+export const login = (email, password) => async dispatch => {
   const options = {
     method: 'POST',
     body: JSON.stringify({ email: email.toLowerCase(), password }),
   }
 
-  const response = await fetchApi('/api/v1/auth/login', options, false);
+  const response = await fetchApi('/auth/login', options, false);
   if (response.success === false) {
     const err = new Error(response.msg);
     err.name = response.title;
@@ -15,19 +15,21 @@ export const personnelLogin = (email, password) => async dispatch => {
     throw err;
   }
 
-  const { token, user } = response;
+  console.log(response)
+
+  // const { token, user } = response;
   
-  window.localStorage.setItem('token', token);
+  // window.localStorage.setItem('token', token);
   
-  dispatch(logUserIn(token, user));
+  // dispatch(logUserIn(token, user));
 }
 
-export const signOut = () => async dispatch =>  {
-  window.localStorage.removeItem('token');
+// export const signOut = () => async dispatch =>  {
+//   window.localStorage.removeItem('token');
 
-  dispatch({ type: SIGN_OUT });
-};
+//   dispatch({ type: SIGN_OUT });
+// };
 
-export const logUserOut = () => ({ type: LOG_USER_OUT });
+// export const logUserOut = () => ({ type: LOG_USER_OUT });
 
-const logUserIn = (token, user) => ({ type: LOG_USER_IN, token, user });
+// const logUserIn = (token, user) => ({ type: LOG_USER_IN, token, user });
