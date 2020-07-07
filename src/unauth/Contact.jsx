@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import UnauthDesktopDrawer from '../navigation/UnauthDesktopDrawer';
 import HeaderPaper from './HeaderPaper';
 import Grid from '@material-ui/core/Grid';
@@ -41,12 +41,12 @@ const useStyles = makeStyles(theme => ({
 
 function Contact() {
   const classes = useStyles();
-  const [email, setEmail] = useState('');
-  const [msg, setMsg] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [msg, setMsg] = useState('');
 
-  const handleEmail = e => setEmail(e.target.value);
-  const handleMsg = e => setMsg(e.target.value);
-  const handleSubmit = e => console.log('submit pressed');
+  // const handleEmail = e => setEmail(e.target.value);
+  // const handleMsg = e => setMsg(e.target.value);
+  // const handleSubmit = e => console.log('submit pressed');
   const title = 'Contact Me';
   const content = (
     <Grid
