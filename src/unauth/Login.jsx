@@ -70,8 +70,6 @@ function Contact() {
       }
 
       await dispatch(login(email, password));
-      setEmail('');
-      setPassword('');
     } catch (error) {
       if (error.name === 'INVALID_EMAIL') {
         title = 'Invalid Email';
@@ -85,11 +83,10 @@ function Contact() {
         title = 'Private Login';
         body = 'This login page is specifically for the site admin. Thank you for visiting!';
       }
+      buttons = 'Ok';
+
+      showAlert(title, body, buttons);
     }
-
-    buttons = 'Ok';
-
-    showAlert(title, body, buttons);
   }
 
 

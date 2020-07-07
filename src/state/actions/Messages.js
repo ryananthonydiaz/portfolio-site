@@ -1,5 +1,5 @@
 import { fetchApi } from '../../utils/ApiUtils';
-// import {  } from '.';
+import { LOAD_MESSAGES } from '.';
 
 export const createMessage = (email, msg) => async dispatch => {
   const options = {
@@ -18,4 +18,17 @@ export const createMessage = (email, msg) => async dispatch => {
   return response;
 }
 
-// const logUserIn = (token, user) => ({ type: LOG_USER_IN, token, user });
+export const fetchMessages = () => async dispatch => {
+  const response = await fetchApi('/message/getmessages');
+
+  if (response.success === false) {
+    const err = new Error(response.msg);
+    err.name = response.title;
+
+    throw err;
+  }
+
+  dispatch(loadMessages(response.data))
+}
+
+const loadMessages = (messages) => ({ type: LOAD_MESSAGES, messages });

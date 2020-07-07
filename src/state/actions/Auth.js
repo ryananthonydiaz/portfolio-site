@@ -1,5 +1,5 @@
 import { fetchApi } from '../../utils/ApiUtils';
-import { } from '.';
+import { LOG_USER_IN, LOG_USER_OUT } from '.';
 
 export const login = (email, password) => async dispatch => {
   const options = {
@@ -15,21 +15,13 @@ export const login = (email, password) => async dispatch => {
     throw err;
   }
 
-  console.log(response)
-
-  // const { token, user } = response;
+  const { token, user } = response;
   
-  // window.localStorage.setItem('token', token);
+  window.localStorage.setItem('token', token);
   
-  // dispatch(logUserIn(token, user));
+  dispatch(logUserIn(token, user));
 }
 
-// export const signOut = () => async dispatch =>  {
-//   window.localStorage.removeItem('token');
+export const logUserOut = () => ({ type: LOG_USER_OUT });
 
-//   dispatch({ type: SIGN_OUT });
-// };
-
-// export const logUserOut = () => ({ type: LOG_USER_OUT });
-
-// const logUserIn = (token, user) => ({ type: LOG_USER_IN, token, user });
+const logUserIn = (token, user) => ({ type: LOG_USER_IN, token, user });

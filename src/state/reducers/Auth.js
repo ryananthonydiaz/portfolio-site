@@ -1,10 +1,8 @@
-import { SET_USER, SET_TOKEN, SIGN_OUT, LOG_USER_IN, LOADING_COMPLETED, LOG_USER_OUT } from '../actions';
+import { SET_TOKEN, SIGN_OUT, LOG_USER_IN, LOG_USER_OUT } from '../actions';
 
 const initialState = {
   isAuthenticated: false,
   token: null,
-  user: {},
-  loading: true,
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -13,25 +11,12 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         token: action.token,
-        user: { ...action.user },
         isAuthenticated: true,
-        loading: false,
       };
     case LOG_USER_OUT:
       return {
         ...state,
         ...initialState,
-        loading: false,
-      };
-    case LOADING_COMPLETED:
-      return {
-        ...state,
-        loading: false,
-      };
-    case SET_USER:
-      return {
-        ...state,
-        user: {...action.user }
       };
     case SET_TOKEN:
       return {
@@ -42,7 +27,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         token: null,
-        user: {},
+        isAuthenticated: false,
       }
     default: 
       return state;
