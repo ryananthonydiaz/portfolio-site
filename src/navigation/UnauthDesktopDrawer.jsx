@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -182,13 +183,13 @@ function UnauthDesktopDrawer({ children }) {
               clickHandler = path;
             }
             return (
-              <>
+              <Fragment key={uuidv4()}>
                 <ListItem button key={text} alignItems="center" className={classes.listItem} onClick={clickHandler}>
                   <ListItemIcon className={classes.listItemIcon}>{icon}</ListItemIcon>
                   <ListItemText primary={text} classes={{ root: classes.listText }} />
                 </ListItem>
                 {index === 5 ? null : <Divider />}
-              </>
+              </Fragment>
             )
           })}
         </List>

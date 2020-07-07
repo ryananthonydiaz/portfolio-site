@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { createMessage } from '../state/actions/Messages';
+import AlertModal, { useAlert } from '../shared/AlertModal';
 import UnauthDesktopDrawer from '../navigation/UnauthDesktopDrawer';
 import HeaderPaper from './HeaderPaper';
 import Grid from '@material-ui/core/Grid';
@@ -41,12 +45,35 @@ const useStyles = makeStyles(theme => ({
 
 function Contact() {
   const classes = useStyles();
-  // const [email, setEmail] = useState('');
-  // const [msg, setMsg] = useState('');
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-  // const handleEmail = e => setEmail(e.target.value);
-  // const handleMsg = e => setMsg(e.target.value);
-  // const handleSubmit = e => console.log('submit pressed');
+  const [msg, setMsg] = useState('');
+  const [email, setEmail] = useState('');
+  const [alertModal, setAlertModal] = useState({ isOpen: false });
+  const [showAlert] = useAlert(setAlertModal);
+
+  const handleEmail = e => setEmail(e.target.value);
+  const handleMsg = e => setMsg(e.target.value);
+
+  const handleSubmit = async () => {
+    let title = 'Thank you!';
+    const buttons = [ { text: 'OK', action: () => history.push('/') } ];
+    let body = 'I appreciate the message and I\'ll be getting back to you ASAP!';
+
+    try {
+      const response = await dispatch(createMessage(email, msg));
+      
+      setEmail('');
+      setMsg('');
+    } catch (error) {
+      console.log(error);
+    }
+
+    showAlert(title, body, buttons)
+  }
+
+
   const title = 'Contact Me';
   const content = (
     <Grid
@@ -62,7 +89,8 @@ function Contact() {
         <TextField
           label="Email"
           variant="outlined"
-          onChange={() => null}
+          value={email}
+          onChange={handleEmail}
           className={classes.formItem}
         />
       </Grid>
@@ -74,13 +102,20 @@ function Contact() {
           rows={10}
           label="Message"
           variant="outlined"
-          onChange={() => null}
+          value={msg}
+          onChange={handleMsg}
           className={classes.formItem}
         />
       </Grid>
       
       <Grid item>
-        <Button className={`${classes.formItem} ${classes.button}`} variant="outlined">
+        <Button
+          className={
+            `${classes.formItem} ${classes.button}`
+            }
+          variant="outlined"
+          onClick={handleSubmit}
+        >
           SUBMIT
         </Button>
       </Grid>
@@ -88,9 +123,12 @@ function Contact() {
   );
 
   return (
-    <UnauthDesktopDrawer>
-      {content}
-    </UnauthDesktopDrawer>
+    <>
+      <AlertModal alertModal={alertModal} />
+      <UnauthDesktopDrawer>
+        {content}
+      </UnauthDesktopDrawer>
+    </>
 );
 }
 
