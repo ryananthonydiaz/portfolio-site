@@ -58,19 +58,41 @@ function Contact() {
 
   const handleSubmit = async () => {
     let title = 'Thank you!';
-    const buttons = [ { text: 'OK', action: () => history.push('/') } ];
+    let buttons = [ { text: 'OK', action: () => history.push('/') } ];
     let body = 'I appreciate the message and I\'ll be getting back to you ASAP!';
 
     try {
-      const response = await dispatch(createMessage(email, msg));
-      
+      if (email.match(/^[^@]+@[^.]+\..{2,}$/g) === null) {
+        const err = new Error('It seems as though your email is invalid. Please check your email and try again.');
+        err.name = 'INVALID_EMAIL';
+        throw err;
+      }
+  
+      if (msg.length < 9) {
+        const err = new Error('Your message must be at least 9 characters long. Please try again.');
+        err.name = 'INVALID_MESSAGE';
+        throw err;
+      }
+
+      await dispatch(createMessage(email, msg));
       setEmail('');
       setMsg('');
     } catch (error) {
-      console.log(error);
+      if (error.name === 'INVALID_EMAIL') {
+        title = 'Invalid Email';
+        body = error.message;
+      } else if (error.name === 'INVALID_MESSAGE') {
+        title = 'Message Length';
+        body = error.message;
+      } else {
+        title = 'Uh-Oh';
+        body = 'It seems like an error occurred. Please try again later.';
+      }
     }
 
-    showAlert(title, body, buttons)
+    buttons = 'Ok';
+
+    showAlert(title, body, buttons);
   }
 
 
