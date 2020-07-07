@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import AptHealth from '../assets/apt-health.gif';
 import HeaderPaper from './HeaderPaper';
 import UnauthDesktopDrawer from '../navigation/UnauthDesktopDrawer';
@@ -80,7 +81,7 @@ function Work() {
       cardDescription,
     }) => (
       // This should be placed in its own component possibly
-    <Card raised className={classes.root}>
+    <Card raised className={classes.root} key={uuidv4()}>
       <CardHeader
         avatar={<Avatar>R</Avatar>}
         title={cardHeaderTitle}
