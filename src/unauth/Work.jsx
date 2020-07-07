@@ -10,12 +10,8 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
@@ -87,12 +83,6 @@ function Work() {
     <Card raised className={classes.root}>
       <CardHeader
         avatar={<Avatar>R</Avatar>}
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon /> 
-            {/* This button can route the user to a page where this particular project can solo */}
-          </IconButton>
-        }
         title={cardHeaderTitle}
         subheader={cardHeaderSubHeader}
       />
@@ -106,13 +96,6 @@ function Work() {
           {cardDescription}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-          {/* This button (another button) can ask the user if they want to message me about this
-          project? */}
-        </IconButton>
-      </CardActions>
     </Card>));
 
   const content = (
