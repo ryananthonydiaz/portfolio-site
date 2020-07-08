@@ -50,6 +50,7 @@ function Contact() {
 
   const [msg, setMsg] = useState('');
   const [email, setEmail] = useState('');
+  const [buttonIsDisabled, setButtonIsDisabled] = useState(false);
   const [alertModal, setAlertModal] = useState({ isOpen: false });
   const [showAlert] = useAlert(setAlertModal);
 
@@ -57,6 +58,7 @@ function Contact() {
   const handleMsg = e => setMsg(e.target.value);
 
   const handleSubmit = async () => {
+    setButtonIsDisabled(true);
     let title = 'Thank you!';
     let buttons = [ { text: 'OK', action: () => history.push('/') } ];
     let body = 'I appreciate the message and I\'ll be getting back to you ASAP!';
@@ -92,6 +94,7 @@ function Contact() {
 
     buttons = 'Ok';
 
+    setButtonIsDisabled(false);
     showAlert(title, body, buttons);
   }
 
@@ -132,6 +135,7 @@ function Contact() {
       
       <Grid item>
         <Button
+          disabled={buttonIsDisabled}
           className={
             `${classes.formItem} ${classes.button}`
             }

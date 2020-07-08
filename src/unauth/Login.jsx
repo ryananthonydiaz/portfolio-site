@@ -51,6 +51,7 @@ function Contact() {
 
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [buttonIsDisabled, setButtonIsDisabled] = useState(false);
   const [alertModal, setAlertModal] = useState({ isOpen: false });
   const [showAlert] = useAlert(setAlertModal);
 
@@ -58,6 +59,7 @@ function Contact() {
   const handlePassword = e => setPassword(e.target.value);
 
   const handleSubmit = async () => {
+    setButtonIsDisabled(true);
     let title;
     let buttons = [ { text: 'OK', action: () => history.push('/') } ];
     let body;
@@ -84,7 +86,7 @@ function Contact() {
         body = 'This login page is specifically for the site admin. Thank you for visiting!';
       }
       buttons = 'Ok';
-
+      setButtonIsDisabled(false);
       showAlert(title, body, buttons);
     }
   }
@@ -125,6 +127,7 @@ function Contact() {
       
       <Grid item>
         <Button
+          disabled={buttonIsDisabled}
           className={
             `${classes.formItem} ${classes.button}`
             }
@@ -136,6 +139,8 @@ function Contact() {
       </Grid>
     </Grid>
   );
+
+  console.log(buttonIsDisabled)
 
   return (
     <>
