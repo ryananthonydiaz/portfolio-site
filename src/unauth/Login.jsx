@@ -140,8 +140,6 @@ function Contact() {
     </Grid>
   );
 
-  console.log(buttonIsDisabled)
-
   return (
     <>
       <AlertModal alertModal={alertModal} />
