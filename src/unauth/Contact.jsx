@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -40,6 +41,14 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     color: '#2ecc71',
+  },
+  buttonProgress: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+  },
+  progressColor: {
+    color: '#757575',
   }
 }));
 
@@ -50,6 +59,7 @@ function Contact() {
 
   const [msg, setMsg] = useState('');
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
   const [buttonIsDisabled, setButtonIsDisabled] = useState(false);
   const [alertModal, setAlertModal] = useState({ isOpen: false });
   const [showAlert] = useAlert(setAlertModal);
@@ -58,6 +68,7 @@ function Contact() {
   const handleMsg = e => setMsg(e.target.value);
 
   const handleSubmit = async () => {
+    setLoading(true);
     setButtonIsDisabled(true);
     let title = 'Thank you!';
     let buttons = [ { text: 'OK', action: () => history.push('/') } ];
@@ -94,6 +105,7 @@ function Contact() {
 
     buttons = 'Ok';
 
+    setLoading(false);
     setButtonIsDisabled(false);
     showAlert(title, body, buttons);
   }
@@ -152,6 +164,12 @@ function Contact() {
     <>
       <AlertModal alertModal={alertModal} />
       <UnauthDesktopDrawer>
+        {loading && <CircularProgress
+                      size={68}
+                      color="primary"
+                      className={classes.buttonProgress}
+                      classes={{ colorPrimary: classes.progressColor }}
+                      />}
         {content}
       </UnauthDesktopDrawer>
     </>
