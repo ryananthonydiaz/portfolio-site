@@ -1,6 +1,9 @@
 import React, { useState, Fragment } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { getThemeIsDark } from '../state/selectors/DarkMode';
+import { toggleTheme } from '../state/actions/DarkMode';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -22,6 +25,7 @@ import SendIcon from '@material-ui/icons/Send';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import clsx from 'clsx';
 import NightsStayIcon from '@material-ui/icons/NightsStay';
+import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
@@ -101,6 +105,10 @@ function UnauthDesktopDrawer({ children }) {
   const classes = useStyles();
   const history = useHistory();
   const theme = useTheme();
+
+  const themeIsDark = useSelector(getThemeIsDark);
+  const dispatch = useDispatch();
+
   const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
@@ -111,7 +119,10 @@ function UnauthDesktopDrawer({ children }) {
     setOpen(false);
   };
 
+  const themeHandler = () => dispatch(toggleTheme());
+
   const toolBarStyles = open ? classes.toolBarOpen : classes.toolBarClosed;
+  const darkModeButton = themeIsDark ? <NightsStayIcon /> : <WbSunnyIcon />
 
   return (
     <div className={classes.root}>
@@ -120,6 +131,7 @@ function UnauthDesktopDrawer({ children }) {
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
+        color="default"
       >
         <Toolbar className={toolBarStyles}>
           <IconButton
@@ -134,8 +146,8 @@ function UnauthDesktopDrawer({ children }) {
             <MenuIcon color='primary' classes={{colorPrimary: classes.listText}} />
           </IconButton>
           
-          <IconButton color="inherit">
-            <NightsStayIcon />
+          <IconButton color="inherit" onClick={themeHandler}>
+            {darkModeButton}
           </IconButton>
         </Toolbar>
       </AppBar>

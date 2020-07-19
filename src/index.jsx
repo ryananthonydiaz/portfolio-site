@@ -5,10 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './state/reducers';
-import { BrowserRouter } from 'react-router-dom';
-import { MuiThemeProvider } from '@material-ui/core';
-import Theme from './MaterialTheme';
-import CssBaseline from '@material-ui/core/CssBaseline';
+
 import * as serviceWorker from './serviceWorker';
 
 let store;
@@ -28,13 +25,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const app = (
   <Provider store={store}>
-    <MuiThemeProvider theme={Theme}>
-        <CssBaseline>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </CssBaseline>
-    </MuiThemeProvider>
+    <App />
   </Provider>
 );
 

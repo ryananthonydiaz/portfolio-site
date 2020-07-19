@@ -1,6 +1,11 @@
 import React, { useEffect, useCallback, useState } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, BrowserRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { MuiThemeProvider } from '@material-ui/core';
+import { getThemeIsDark } from './state/selectors/DarkMode';
+import LightTheme from './MaterialTheme/light';
+import DarkTheme from './MaterialTheme/dark';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { logUserIn } from './state/actions/Auth';
 import { getToken, getIsAuthenticated } from './state/selectors/Auth';
 import isNull from 'lodash/isNull';
@@ -54,7 +59,18 @@ function App() {
     );
   }
 
-  return main;
+  const themeIsDark = useSelector(getThemeIsDark);
+  const Theme = themeIsDark ?  LightTheme : DarkTheme;
+
+  return (
+    <MuiThemeProvider theme={Theme}>
+      <CssBaseline>
+        <BrowserRouter>
+          {main}
+        </BrowserRouter>
+      </CssBaseline>
+    </MuiThemeProvider>
+  );
 }
 
 export default App;

@@ -6,3 +6,6 @@ export const SIGN_OUT = 'SIGN_OUT';
 
 // message
 export const LOAD_MESSAGES = 'LOAD_MESSAGES';
+
+// dark mode
+export const TOGGLE_THEME = 'TOGGLE_THEME';
