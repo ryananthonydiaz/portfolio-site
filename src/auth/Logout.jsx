@@ -34,6 +34,11 @@ function Logout() {
   const dispatch = useDispatch();
   const classes = useStyles();
 
+  const logOut = () => {
+    localStorage.removeItem('token');
+    dispatch(logUserOut());
+  }
+
   const title = 'Log Out';
   const content = (
     <Grid
@@ -45,7 +50,7 @@ function Logout() {
     >
       <HeaderPaper classes={classes} title={title} />
       <Grid item>
-        <Button variant="outlined" onClick={() => dispatch(logUserOut())}>
+        <Button variant="outlined" onClick={logOut}>
           Log Out
         </Button>
       </Grid>
