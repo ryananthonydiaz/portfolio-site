@@ -21,6 +21,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import SendIcon from '@material-ui/icons/Send';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import clsx from 'clsx';
+import NightsStayIcon from '@material-ui/icons/NightsStay';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
@@ -86,6 +87,14 @@ const useStyles = makeStyles(theme => ({
   listText: {
     color: '#757575'
   },
+  toolBarClosed: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  toolBarOpen: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  }
 }));
 
 function UnauthDesktopDrawer({ children }) {
@@ -102,6 +111,8 @@ function UnauthDesktopDrawer({ children }) {
     setOpen(false);
   };
 
+  const toolBarStyles = open ? classes.toolBarOpen : classes.toolBarClosed;
+
   return (
     <div className={classes.root}>
       <AppBar
@@ -110,7 +121,7 @@ function UnauthDesktopDrawer({ children }) {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar>
+        <Toolbar className={toolBarStyles}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -121,6 +132,10 @@ function UnauthDesktopDrawer({ children }) {
             })}
           >
             <MenuIcon color='primary' classes={{colorPrimary: classes.listText}} />
+          </IconButton>
+          
+          <IconButton color="inherit">
+            <NightsStayIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
