@@ -16,7 +16,7 @@ export const login = (email, password) => async dispatch => {
   }
 
   const { token, user } = response;
-  
+  console.log(`user is ${JSON.stringify(user)}`)
   window.localStorage.setItem('token', token);
   
   dispatch(logUserIn(token, user));
@@ -24,4 +24,4 @@ export const login = (email, password) => async dispatch => {
 
 export const logUserOut = () => ({ type: LOG_USER_OUT });
 
-const logUserIn = (token, user) => ({ type: LOG_USER_IN, token, user });
+export const logUserIn = (token, user) => ({ type: LOG_USER_IN, token, user });

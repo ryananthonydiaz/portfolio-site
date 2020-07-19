@@ -1,7 +1,9 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useCallback } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { getIsAuthenticated, getToken } from './state/selectors/Auth';
+import { useDispatch, useSelector } from 'react-redux';
+import { logUserIn } from './state/actions/Auth';
+import { getToken } from './state/selectors/Auth';
+import isNil from 'lodash/isNil';
 import Landing from './unauth/Landing';
 import Contact from './unauth/Contact';
 import About from './unauth/About';
@@ -13,12 +15,20 @@ import Messages from './auth/Messages';
 import Logout from './auth/Logout';
 
 function App() {
-  // const dispatch = useDispatch();
-  const isAuthenticated = useSelector(getIsAuthenticated);
+  const dispatch = useDispatch();
   const token = useSelector(getToken);
 
+  const logUserInCallback = useCallback((tk, usr) => dispatch(logUserIn(tk, usr)), [dispatch]);
+  
+	useEffect(() => {
+    const localStorageToken = localStorage.getItem('token');
+		if (localStorageToken && isNil(token)) {
+      logUserInCallback(localStorageToken, {});
+		}
+  }, [logUserInCallback]);
+
   let main;
-  if (isAuthenticated === true && token !== null) {
+  if (!isNil(token)) {
     main = (
       <Switch>
         <Route exact path="/" component={Messages} />
@@ -26,7 +36,7 @@ function App() {
         <Redirect to="/" />
       </Switch>
     );
-  } else {
+  } else if (isNil(token)) {
     main = (
     <Switch>
         <Route exact path="/" component={Landing} />
