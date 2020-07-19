@@ -104,6 +104,7 @@ function UnauthDesktopDrawer({ children }) {
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
+        color="default"
       >
         <Toolbar>
           <IconButton
