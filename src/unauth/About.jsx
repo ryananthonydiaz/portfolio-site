@@ -58,7 +58,7 @@ function About() {
   },{
     title: `JavaScript`,
     subTitle: `Skills within the ecosystem`,
-    info: `TypeScript enthusiast and advocate. Strong proficiency in JavaScript/ES6/ES7, including DOM
+    info: `Strong proficiency in JavaScript/ES6/ES7, including DOM
     manipulation and the JavaScript object model through an expert understanding of React.js. Developing
     new user-facing features and maintaining state management through REDUX, REDUX HOOKS, REDUX-THUNK
     (middleware for RESTful APIs) and REACT-HOOKS. I have professional experience using React style
