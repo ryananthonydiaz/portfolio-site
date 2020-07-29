@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMessages } from '../state/selectors/Message';
 import { fetchMessages } from '../state/actions/Messages';
@@ -7,6 +7,7 @@ import AuthDesktopDrawer from '../navigation/AuthDesktopDrawer';
 import MessageCell from './MessageCell';
 import HeaderPaper from '../unauth/HeaderPaper';
 import Grid from '@material-ui/core/Grid';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -34,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Messages() {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true);
   const messages = useSelector(getMessages);
   const classes = useStyles();
 
@@ -50,18 +52,23 @@ function Messages() {
           logUserOutCallback();
         }
       }
+      setIsLoading(false);
     }
 
     asyncFetchMessages();
   }, [fetchMessagesCallback, logUserOutCallback]);
-  const messageList = messages.map(({id, sender_email: from, msg, created_at}) => (
-    <MessageCell
-      from={from}
-      date={new Date(created_at).toDateString()}
-      msg={msg}
-      key={id}
-    />
-  ))
+
+  let messageList = <CircularProgress color="primary" />
+  if (isLoading === false) {
+    messageList = messages.map(({id, sender_email: from, msg, created_at}) => (
+      <MessageCell
+        from={from}
+        date={new Date(created_at).toDateString()}
+        msg={msg}
+        key={id}
+      />
+    ))
+  }
 
   const title = 'Messages';
   const content = (

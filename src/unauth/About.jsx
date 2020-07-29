@@ -36,7 +36,7 @@ function About() {
   const aboutList = [{
     title: `Ryan Diaz`,
     subTitle: `A Software Engineer`,
-    info: `I'm a software engineer based in the greater Los Angeles area that specializes in building
+    info: `I'm a Software Engineer based in the greater Los Angeles area that specializes in building
     web applications (Front to Back) with a passion for anything that lives on the web.`,
   },{
     title: `Experience`,
