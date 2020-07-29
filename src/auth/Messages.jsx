@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMessages } from '../state/selectors/Message';
 import { fetchMessages } from '../state/actions/Messages';
-import { logUserOut } from '../state/actions/Auth';
+import useFetch from '../utils/useFetch';
+import { getMessages } from '../state/selectors/Message';
 import AuthDesktopDrawer from '../navigation/AuthDesktopDrawer';
 import MessageCell from './MessageCell';
 import HeaderPaper from '../unauth/HeaderPaper';
@@ -35,28 +35,10 @@ const useStyles = makeStyles((theme) => ({
 
 function Messages() {
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(true);
   const messages = useSelector(getMessages);
   const classes = useStyles();
 
-  const fetchMessagesCallback = useCallback(() => dispatch(fetchMessages()), [dispatch]);
-  const logUserOutCallback = useCallback(() => dispatch(logUserOut()), [dispatch]);
-
-  useEffect(() => {
-    const asyncFetchMessages = async () => {
-      try {
-        await fetchMessagesCallback();
-      } catch (error) {
-        if (error.name === 'UNAUTHENTICATED') {
-          localStorage.removeItem('token');
-          logUserOutCallback();
-        }
-      }
-      setIsLoading(false);
-    }
-
-    asyncFetchMessages();
-  }, [fetchMessagesCallback, logUserOutCallback]);
+  const { isLoading } = useFetch(dispatch, fetchMessages);
 
   let messageList = <CircularProgress color="primary" />
   if (isLoading === false) {
